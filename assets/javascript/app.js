@@ -26,12 +26,13 @@ var questions = [
 
 //runs the countDown function every second
 var time = 10
+var IntervalID;
 function timer() {
-    setInterval(countDown, 1000);
+    IntervalID = setInterval(countDown, 1000);
 }
 
 function stop() {
-    clearInterval(countDown);
+    clearInterval(IntervalID);
 }
 //decreases the time variable by 1 and updates the timer displayed at the top of the page
 function countDown(){
@@ -40,6 +41,7 @@ function countDown(){
 
     if (time === 0){
        stop();
+       $("#sub-title").text("Game Over!")
     }
 }
 
@@ -47,7 +49,7 @@ function countDown(){
 function start(){
     /*timer = setInterval(game.countDown, 1000);*/
 
-    $("#sub-wrapper").prepend("<h2>Time remaining: <span id='counter-number'> 10 </span> </h2>");
+    $("#sub-wrapper").prepend("<h2 id='sub-title'>Time remaining: <span id='counter-number'> 10 </span> </h2>");
     $("#start").remove();
 
     for(var i = 0; i < questions.length; i++){
