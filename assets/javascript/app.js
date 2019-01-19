@@ -24,9 +24,15 @@ var questions = [
 }
 ];
 
+//starts the timer when the "begin" button is clicked
+$("#start").click(timer);
+$("#start").click(start);
+
+
 //runs the countDown function every second
 var time = 10
 var IntervalID;
+
 function timer() {
     IntervalID = setInterval(countDown, 1000);
 }
@@ -34,6 +40,7 @@ function timer() {
 function stop() {
     clearInterval(IntervalID);
 }
+
 //decreases the time variable by 1 and updates the timer displayed at the top of the page
 function countDown(){
     time--;
@@ -45,6 +52,10 @@ function countDown(){
     }
 }
 
+function answerCheck() {
+    stop();
+    $("#sub-title").text("How did you do?");
+}
 
 function start(){
     /*timer = setInterval(game.countDown, 1000);*/
@@ -60,12 +71,12 @@ function start(){
             "'value='" + questions[i].answers[j] + "''>" + questions[i].answers[j]);
         }
     }
-    card.append("<br><br> <button class='text-center'id='done'>done</button>");
+    card.append("<br><br> <button class='text-center' id='done'>done</button>");
+    $("#done").click(answerCheck);
+    
 }
 
-//starts the timer when the "begin" button is clicked
-$("#start").click(timer);
-$("#start").click(start);
+
 
 
 
