@@ -1,5 +1,7 @@
 //inital variables
 var card = $("#quiz-area");
+var correctScore = 0;
+var incorrectScore = 0;
 
 //This array holds the questions that will protogate the quiz area
 var questions = [
@@ -21,7 +23,7 @@ var questions = [
       "function = myFunction()",
       "function.myFunction()"
     ],
-    correctAnswer: "function myFunction"
+    correctAnswer: "function myFunction()"
   },
   {
     question: "In what year was JavaScript released?",
@@ -40,7 +42,7 @@ $("#start").click(timer);
 $("#start").click(start);
 
 //runs the countDown function every second
-var time = 10;
+var time = 30;
 var IntervalID;
 
 //runs the countdown function every second
@@ -59,7 +61,7 @@ function countDown() {
   $("#counter-number").text(time);
 
   if (time === 0) {
-    stop();
+    answerCheck();
     $("#sub-title").text("Game Over!");
   }
 }
@@ -70,19 +72,24 @@ function answerCheck() {
   stop();
   $("#sub-title").text("How did you do?");
 
+  for (i = 0; i < questions.length; i++){
   if (
-    $("input[name = question-0]:checked").val() == questions[0].correctAnswer
+    $("input[name = question-" + i + "]:checked").val() == questions[i].correctAnswer
   ) {
     console.log("GG Placeholder");
+    correctScore++;
   } else {
     console.log("wrong Placeholder");
+    incorrectScore++;
   }
+}
+    card.append("<h2> Total Correct: " + correctScore + "<br> <h2> Total Incorrect: " + incorrectScore);
 }
 
 // Propogates the quiz area with the questions from the questions array. Also adds the end button and its handler.
 function start() {
   $("#sub-wrapper").prepend(
-    "<h2 id='sub-title'>Time remaining: <span id='counter-number'> 10 </span> </h2>"
+    "<h2 id='sub-title'>Time remaining: <span id='counter-number'> 30 </span> </h2>"
   );
   $("#start").remove();
 
@@ -102,4 +109,5 @@ function start() {
   }
   card.append("<br><br> <button class='text-center' id='done'>done</button>");
   $("#done").click(answerCheck);
+
 }
