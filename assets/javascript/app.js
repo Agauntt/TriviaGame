@@ -71,7 +71,7 @@ function countDown() {
 function answerCheck() {
   stop();
   $("#sub-title").text("How did you do?");
-
+//This for loop checks the selected answer agains the correct answer, and updates the score
   for (i = 0; i < questions.length; i++){
   if (
     $("input[name = question-" + i + "]:checked").val() == questions[i].correctAnswer
@@ -83,6 +83,7 @@ function answerCheck() {
     incorrectScore++;
   }
 }
+//Displays the final score at the bottom of the screen
     card.append("<h2> Total Correct: " + correctScore + "<br> <h2> Total Incorrect: " + incorrectScore);
 }
 
@@ -92,7 +93,6 @@ function start() {
     "<h2 id='sub-title'>Time remaining: <span id='counter-number'> 30 </span> </h2>"
   );
   $("#start").remove();
-
   for (var i = 0; i < questions.length; i++) {
     card.append("<h2>" + questions[i].question + "<h2>");
 
