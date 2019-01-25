@@ -71,6 +71,7 @@ function countDown() {
 function answerCheck() {
   stop();
   $("#sub-title").text("How did you do?");
+  
 //This for loop checks the selected answer agains the correct answer, and updates the score
   for (i = 0; i < questions.length; i++){
   if (
@@ -92,7 +93,9 @@ function start() {
   $("#sub-wrapper").prepend(
     "<h2 id='sub-title'>Time remaining: <span id='counter-number'> 30 </span> </h2>"
   );
-  $("#start").remove();
+  $("#start").remove(); //deletes the start button when the game starts
+
+  //generates the questions and options
   for (var i = 0; i < questions.length; i++) {
     card.append("<h2>" + questions[i].question + "<h2>");
 
